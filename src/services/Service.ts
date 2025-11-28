@@ -2,8 +2,8 @@
 
 export const api = axios.create({
     //baseURL: "https://lojagames-3nay.onrender.com"
-    //baseURL: "https://lojagames-moom.onrender.com"
-    baseURL: "http://localhost:8080"
+    baseURL: "https://lojagames-moom.onrender.com"
+    //baseURL: "http://localhost:8080"
   })
   
   export const listar = async(url: string, setDados: Function) => {
