@@ -9,6 +9,7 @@ import Home from "./pages/home/Home"
 import DeletarProduto from "./components/produtos/deletarprodutos/DeletarProduto"
 import FormProduto from "./components/produtos/formproduto/FormProduto"
 import ListarProdutos from "./components/produtos/listarprodutos/ListarProdutos"
+import ListarProdutosPorNome from "./components/produtos/listarprodutospornome/ListarProdutosPorNome"
 
 /** 
  * Tipo (type) para controlar o estado do Menu Mobile (aberto ou fechado)
@@ -61,6 +62,7 @@ function App() {
               <Route path="/cadproduto" element={<FormProduto />} />
               <Route path="/editarproduto/:id" element={<FormProduto />} />
               <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
+              <Route path="/consultarnome/:nome" element={<ListarProdutosPorNome />} />
             </Routes>
           </div>
           

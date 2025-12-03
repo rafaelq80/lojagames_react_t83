@@ -1,11 +1,21 @@
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
-import type { FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SearchForm({ className = "" }: { className?: string }) {
 
+    const navigate = useNavigate();
+
+    const [nome, setNome] = useState<string>('');
+
+    function handleBuscarProdutos(e: ChangeEvent<HTMLInputElement>){
+        setNome(e.target.value)
+    }
+
     function buscarProdutos(e: FormEvent<HTMLFormElement>){
         e.preventDefault();
-        alert('Em desenvolvimento!');
+        navigate(`/consultarnome/${nome}`)
+        setNome('');
     }
 
     return (
@@ -24,6 +34,8 @@ function SearchForm({ className = "" }: { className?: string }) {
                     placeholder="Buscar jogos..."
                     id="busca"
                     name="busca"
+                    value={nome}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleBuscarProdutos(e)}
                 />
                 <button 
                     type="submit" 

@@ -1,7 +1,7 @@
 ﻿import type Produto from "./Produto";
 
 export default interface Categoria {
-    id: number | undefined;
+    id: number;
     tipo: string;
     produto?: Produto[];
 }

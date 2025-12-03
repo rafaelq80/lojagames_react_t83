@@ -36,7 +36,7 @@ function ListarProdutos() {
 					className="mx-auto my-28"
 				/>
 			)}
-			<div className="flex justify-center mt-4 md:mt-6">
+			<div className="flex justify-center mt-6 md:mt-8">
 				<div className="container flex flex-col m-2 md:my-0">
 					{!isLoading && produtos.length === 0 && (
 						<span className="my-8 text-3xl text-center">
