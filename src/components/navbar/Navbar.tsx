@@ -1,7 +1,8 @@
 import { ListIcon, ShoppingCartIcon, UserIcon, XIcon } from "@phosphor-icons/react";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "./SearchForm";
+import { CartContext } from "../../contexts/CartContext";
 
 /** 
  * Tipo (type) para controlar o estado do Menu Mobile (aberto ou fechado)
@@ -30,6 +31,9 @@ interface NavbarProps {
 };
 
 function Navbar({ menuState, onMenuToggle, onMenuClose }: Readonly<NavbarProps>) {
+    
+    const { quantidadeItems } = useContext(CartContext);
+
     /**
      * Referência para o menu mobile (pode ser usada para acessibilidade ou foco)
      * 
@@ -81,7 +85,14 @@ function Navbar({ menuState, onMenuToggle, onMenuClose }: Readonly<NavbarProps>)
                         <Link to='/categorias' className='hover:underline'>Categorias</Link>
                         <Link to='/cadcategoria' className='hover:underline'>Cadastrar Categoria</Link>
                         <UserIcon size={32} weight='bold' />
-                        <ShoppingCartIcon size={32} weight='bold' />
+                        <Link to='/cart'>
+                            <ShoppingCartIcon size={32} weight='bold' />
+                             {quantidadeItems > 0 && (
+                                <span className="absolute top-7 right-4 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                    {quantidadeItems}
+                                </span>
+                            )}
+                        </Link>
                     </div>
 
                     {/* Botão menu mobile (hambúrguer), só aparece em telas pequenas e quando o menu está fechado */}
@@ -145,8 +156,13 @@ function Navbar({ menuState, onMenuToggle, onMenuClose }: Readonly<NavbarProps>)
                         <Link to='' onClick={handleMenuClose} >
                             <UserIcon size={32} weight='bold' className="text-white" />
                         </Link>
-                        <Link to='' onClick={handleMenuClose} >
-                            <ShoppingCartIcon size={32} weight='bold' className="text-white" />                        
+                        <Link to='/cart' onClick={handleMenuClose} >
+                            <ShoppingCartIcon size={32} weight='bold' className="text-white" />   
+                            {quantidadeItems > 0 && (
+                                <span className="relative -top-9 -right-5 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                    {quantidadeItems}
+                                </span>
+						    )}                     
                         </Link>
                         </div>
                     </div>
